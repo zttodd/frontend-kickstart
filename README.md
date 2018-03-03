@@ -1,6 +1,6 @@
 # Front-end Kickstart  
 
-## Get a simple front-end build up and running quickly.  
+## Get a simple front-end project up and running quickly.  
 
 **Getting Started**  
 

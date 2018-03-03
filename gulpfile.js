@@ -1,13 +1,21 @@
 var gulp       = require('gulp'),
+    browserSync = require('browser-sync').create(),
     concat     = require('gulp-concat'),
     rename     = require('gulp-rename'),
     sass       = require('gulp-sass'),
     uglify     = require('gulp-uglify');
 
-var sourceJs    = 'src/js/**/*.js',
+var sourceHTML  = 'src/templates/**/*.html',
+    buildHTML   = 'build',
+    sourceJs    = 'src/js/**/*.js',
     buildJs     = 'build/js',
     sourceSass  = 'src/scss/**/*.scss',
     buildCss    = 'build/css';
+
+gulp.task('copy', function () {
+    gulp.src(sourceHTML)
+        .pipe(gulp.dest(buildHTML));
+});
 
 gulp.task('sass', function () {
     return gulp.src(sourceSass)
@@ -24,8 +32,13 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest(buildJs));
 });
 
-gulp.task('watch', function () {
-    gulp.watch([sourceSass, sourceJs], ['sass', 'scripts']);
+gulp.task('serve', ['sass'], function() {
+
+    browserSync.init({
+        server: "build"
+    });
+
+    gulp.watch([sourceHTML, sourceSass, sourceJs], ['copy', 'sass', 'scripts']).on('change', browserSync.reload);
 });
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['serve']);
