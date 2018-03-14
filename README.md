@@ -1,7 +1,5 @@
-# Static site generator  
+# Static  
 
-- BrowserSync  
-- Gulp  
-- Panini  
-- Sass  
-- Uglify  
+**Quickly build a website with this static site generator.**  
+
+Includes BrowserSync, Gulp, Panini, Sass, and Uglify  
