@@ -2,17 +2,16 @@ var gulp        = require('gulp'),
     browserSync = require('browser-sync').create(),
     panini      = require('panini'),
     concat      = require('gulp-concat'),
+    reload      = browserSync.reload,
     rename      = require('gulp-rename'),
     sass        = require('gulp-sass'),
-    uglify      = require('gulp-uglify'),
-    reload      = browserSync.reload;
+    uglify      = require('gulp-uglify');
 
 var sourceHtml  = 'src/**/*.html',
-    sourceHbs   = 'src/**/*.hbs',
     buildHTML   = 'build',
-    sourceJs    = 'src/js/_assets/**/*.js',
+    sourceJs    = 'src/_assets/js/**/*.js',
     buildJs     = 'build/js',
-    sourceSass  = 'src/scss/_assets/**/*.scss',
+    sourceSass  = 'src/_assets/scss/**/*.scss',
     buildCss    = 'build/css';
 
 gulp.task('pages', function() {
@@ -56,5 +55,5 @@ gulp.task('default', function () {
         }
     });
 
-    gulp.watch([sourceHtml, sourceHbs, sourceSass, sourceJs], ['reload']);
+    gulp.watch([sourceHtml, sourceSass, sourceJs], ['reload']);
 });
